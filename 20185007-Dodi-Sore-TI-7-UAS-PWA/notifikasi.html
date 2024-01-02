@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        button{
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h3>
+            Header
+        </h3>
+        <h5 class="notifikasi">Notifikasi</h5>
+        <h5 class="indexeddb"><a href="indexeddb.html">IndexedDB</a></h5>
+        <h5 class="cv"><a href="cv.html">Credit</a></h5>
+    </header>
+    <center>
+        <button class="btn-notif">Notifikasi</button>
+    </center>
+
+    <script>
+        const button = document.querySelector("button")
+        button.addEventListener("click", () =>
+            Notification.requestPermission().then(perm => {
+                if (perm === "granted"){
+                    new Notification("Ini Notifikasi", {
+                        body: "HALO DUNIA",
+                        icon: "/images/icons/icon-72x72.png"
+                    })
+                } else {
+                    alert("Mohon enable notifikasi")
+                }
+            })
+        )
+    </script>
+</body>
+</html>
