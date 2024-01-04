@@ -1,26 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UAS</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+  </head>
+  <style>
+    section {
+      width: 100%;
+    }
+    #row {
+      margin: 0 4rem 0;
+    }
+    #row #card {
+      padding: 0.4rem;
+      border: 1px solid;
+      margin-bottom: 0.3rem;
+      background-color: rgba(0, 137, 123, 0.367);
+    }
+  </style>
+  <body>
     <header>
-        <h3>
-            Header
-        </h3>
-        
-        <h5 class="notifikasi"><a href="notifikasi.html">Notifikasi</a></h5>
-        <h5 class="indexeddb"><a href="indexeddb.html">IndexedDB</a></h5>
-        <h5 class="cv"><a href="cv.html">Credit</a></h5>
+      <h3>Home</h3>
+
+      <h5 class="notifikasi"><a href="notifikasi.html">Notifikasi</a></h5>
+      <h5 class="indexeddb"><a href="indexeddb.html">IndexedDB</a></h5>
+      <h5 class="cv"><a href="cv.html">Credit</a></h5>
     </header>
 
-    
-    <script src="/app.js">
+    <section>
+      <h1 style="margin: 6rem 4rem 0.2rem">Data API :</h1>
+      <div id="row"></div>
+    </section>
+    <script src="/app.js"></script>
+    <script>
+      const row = document.getElementById("row");
+
+      async function getData() {
+        const response = await fetch("https://api.restful-api.dev/objects");
+        let data = await response.json();
+        console.log(data);
+        let tampil = "";
+        for (i = 0; i <= 5; i++) {
+          // console.log(data[i].data.color);
+          tampil += `
+          <div id="card"><h4>| ID : ${data[i].id}<br>| Nama Produk : ${data[i].name}</h4></div>
+          `;
+        }
+        row.innerHTML = tampil;
+      }
+
+      getData();
     </script>
-</body>
+  </body>
 </html>
